@@ -712,6 +712,10 @@ $ pip freeze > requirements.txt
 
 * view decorators
 
+  ```python
+  from django.views.decorators.http import require_http_methods, require_POST, require_GET, require_safe
+  ```
+
 이건, 함수에 기능 추가할때 함수 수정 안하고 기능을 연장시켜주는 함수라고한다
 
 뷰에 적용할 수 있는 여러 기능들이 있으니 살펴보자
@@ -723,8 +727,6 @@ $ pip freeze > requirements.txt
 def create(request):
     pass
 ```
-
-
 
 * require_POST() : POST메서드요청만 승인
 
