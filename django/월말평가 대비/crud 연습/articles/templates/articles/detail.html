@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>detail</h1><br>
+<p>글 번호 : {{article.id}}</p>
+<p>글 제목 : {{article.title}}</p>
+<p>글 내용 : {{article.content}}</p>
+<hr>
+<a href="{% url 'articles:update' article.pk %}" class="btn btn-outline-primary">[UPDATE]</a>
+<form action="{% url 'articles:delete' article.pk %}" method="POST">
+  {% csrf_token %}
+  <button class="btn btn-outline-danger">DELETE</button>
+</form>
+<form action="{% url 'articles:index' %}">
+<button class="btn btn-outline-dark">BACK</button>
+</form>
+{% endblock content %}

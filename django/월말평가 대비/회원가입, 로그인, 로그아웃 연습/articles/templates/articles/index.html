@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="{% url 'articles:create' %}" method="POST">
+{% csrf_token %}
+<button class="btn btn-outline-primary">게시글 작성</button>
+</form>
+<hr>
+{% for article in articles %}
+<p>no.{{ article.id}}</p>
+<a href="{% url 'articles:detail' article.pk %}">{{article.title}}</a>
+<hr>
+{% endfor %}
+{% endblock content %}
