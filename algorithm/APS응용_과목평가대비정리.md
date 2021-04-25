@@ -104,3 +104,70 @@ for tc in range(1, int(input())+1):
     print(ans)
 ```
 
+---
+
+##### 퀵정렬
+
+pivot을 활용해서 왼쪽오른쪽으로 나뉘어진채로 pivot과 비교해서 정렬해주는방식
+
+```python
+def Quick(temp,start,end):
+    if start>=end:
+        return
+    pivot=start
+    left=start+1
+    right=end
+    while left <= right:
+        while left<=end and temp[left] <= temp[pivot]:
+            left+=1
+        while right>start and temp[right] >= temp[pivot]:
+            right-=1
+
+        if left > right: # 엇갈린거
+            temp[right], temp[pivot] = temp[pivot], temp[right]
+        else:
+            temp[left],temp[right]=temp[right],temp[left]
+    Quick(temp,start,right-1)
+    Quick(temp,right+1,end)
+
+
+for tc in range(1, int(input())+1):
+    N=int(input())
+    temp=list(map(int, input().split()))
+    start, end = 0, len(temp)-1
+    Quick(temp, start, end)
+
+    print("#{} {}".format(tc, temp[N//2]))
+```
+
+---
+
+#### 이진수
+
+```
+for tc in range(1, int(input())+1):
+    l,w=map(str,input().split()) # 몇자리인지, 16진수
+    result='' # 여기에 차곡차곡 넣어줄예정
+    for i in range(len(w)): # l이랑 같은거같음, w의길이
+        result+="{:04b}".format(int(w[i],16))
+		# result에다가 format을 활용해 16진수를 2진수b로 바꿔서 하나씩 차곡차곡 넣어줌 04는 아마도 0의 4자리를 의미하는것 같음. 필요없으면 안해줘도될듯
+    print("#{} {}".format(tc, result))
+```
+
+```
+for tc in range(1, int(input())+1):
+    num=float(input()) # 소수받아주기
+    result="" #결과값담아주기
+    while True: # 계속돌릴거양~~
+        num*=2 # 곱하기2
+        result+=str(int(num)) # 실수부분만 담아주기
+        num-=int(num) # 그리고 실수빼주기
+  # 이것을 반복반복 하다가
+        if not num%2: # 만약 2로 나눴을때 나머지가 없다면?
+            break # 멈춰라
+        elif len(result)>13: # 만약 길이가 13이상이라면? 
+            result="overflow" # overflow를 출력해라
+            break # 그리고멈춰
+    print("#{} {}".format(tc, result)) # 결과값출력
+```
+
