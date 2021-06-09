@@ -42,3 +42,72 @@ def dfs(graph, v, visited):
 > DFS는 한경로로 쭉쭉쭉 들어가고 못가면 돌아와서 가지않았던 인접한길로 다시또 쭉쭉쭉 들어간다.
 >
 > 그래서 깊이경로탐색? 이라고 부르는가보다.
+
+
+
+#### BOJ) 1260. DFS와 BFS
+
+```python
+'''
+example)
+4 5 1
+1 2
+1 3
+1 4
+2 4
+3 4
+answer)
+1 2 4 3
+1 2 3 4
+
+example)
+5 5 3
+5 4
+5 2
+1 2
+3 4
+3 1
+answer)
+3 1 2 5 4
+3 1 4 2 5
+'''
+def dfs(graph,visited,V):
+
+    visited[V]=True
+    dfs_list.append(V)
+    graph[V].sort()
+    for i in graph[V]:
+        if not visited[i]:
+            dfs(graph,visited,i)
+
+def bfs(graph,visited,V):
+    q=[]
+    q.append(V)
+    while q:
+        node=q.pop(0)
+        bfs_list.append(node)
+        visited2[node]=True
+        graph[node].sort()
+        for i in graph[node]:
+            if not visited2[i]:
+                visited2[i]=True
+                q.append(i)
+
+
+N,M,V=map(int,input().split())
+graph=[[] for _ in range(N+1)]
+visited1=[False]*(N+1)
+visited2=[False]*(N+1)
+for i in range(M):
+    s,e=map(int,input().split())
+    graph[s].append(e)
+    graph[e].append(s)
+dfs_list=[]
+bfs_list=[]
+dfs(graph,visited1,V)
+bfs(graph,visited2,V)
+
+print(*dfs_list)
+print(*bfs_list)
+```
+
