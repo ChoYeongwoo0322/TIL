@@ -42,16 +42,16 @@ def island(x,y):
                 visited[ny][nx]=1
                 arr[ny][nx]=0
                 q.append((ny,nx))
+for _ in range(100):
+    w,h=map(int,input().split())
+    if w==0 and h==0:
+        exit()
+    arr=[list(map(int,input().split())) for _ in range(h)]
 
-w,h=map(int,input().split())
-if w==0 and h==0:
-    exit()
-arr=[list(map(int,input().split())) for _ in range(h)]
-print(arr)
-visited=[[0]*w for _ in range(h)]
-cnt=0
-for i in range(h):
-    for j in range(w):
-        if arr[i][j]==1:
-            island(i,j)
-print(visited)
+    visited=[[0]*w for _ in range(h)]
+    cnt=0
+    for i in range(h):
+        for j in range(w):
+            if arr[i][j]==1:
+                island(i,j)
+    print(cnt)
