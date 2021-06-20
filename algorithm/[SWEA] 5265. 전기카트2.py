@@ -19,25 +19,21 @@
 # TSP
 from tsp_solver.greedy import solve_tsp
 
-#Prepare the square symmetric distance matrix for 3 nodes:
-#  Distance from A to B is 1.0
-#                B to C is 3.0
-#                A to C is 2.0
-D = [[],
-     [1.0],
-     [2.0, 3.0]]
+for tc in range(1,int(input())+1):
+    n=int(input())
+    arr=[list(map(int,input().split())) for _ in range(n)]
+    ans=987654321
 
-path = solve_tsp(D)
+    for i in range(0,n):
+        result = solve_tsp(arr, endpoints=(i, None))
+        result.append(result[0])
+        temp=0
+        for j in range(n):
+            temp+=arr[result[j]][result[j+1]]
+        if temp<ans:
+            ans=temp
 
-#will print [1,0,2], path with total length of 3.0 units
-print(path)
-
-# for tc in range(1,int(input())+1):
-#     n=int(input())
-#     arr=[list(map(int,input().split())) for _ in range(n)]
-#     ans=float('inf')
-#
-#     for i in range(n):
+    print("#{} {}".format(tc,ans))
 
 
 
